@@ -1,0 +1,37 @@
+{
+	"Model": {
+		"Type": "DNN",
+		"PathCKPT": "model_ckpt/",
+		"NameCKPT": "GAN.ckpt"
+	},
+
+	"Training": {
+	
+		"Noise": {
+			"Count": 200,
+			"Dimensions": [10],
+			"Mean": 0,
+			"STDDEV": 1
+		},
+	
+		"Samples": {
+			"Count": 200,
+			"Dimensions": [1],
+			"Type": "numerical"
+		},
+	
+		"Epochs": {
+			"Main": 40,
+			"Gen": 2000,
+			"Disc": 2000
+		}
+	},
+	
+	"Debug": {
+		"Intervals": {
+			"PrintLossGen": 100,
+			"PrintLossDisc": 100,
+			"SaveCKPT": 5
+		}
+	}
+ }
