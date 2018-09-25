@@ -3,7 +3,7 @@ import numpy as np
 import os
 import json
 from GAN import GAN
-from dataloader import DataLoader
+from data_loader import DataLoader
 from config_utils import ConfigLoader
 
 file_json = "config_numerical.json"
