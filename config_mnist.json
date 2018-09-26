@@ -1,6 +1,6 @@
 {
 	"Model": {
-		"Type": "DNN",
+		"Type": "CNN",
 		"PathCKPT": "model_ckpt/",
 		"NameCKPT": "GAN.ckpt"
 	},
@@ -16,8 +16,8 @@
 	
 		"Samples": {
 			"Count": 1000,
-			"Dimensions": [1],
-			"Type": "numerical"
+			"Dimensions": [28, 28, 1],
+			"Type": "mnist"
 		},
 	
 		"Epochs": {
@@ -27,15 +27,15 @@
 		},
 		
 		"BatchSize": {
-			"Gen": 100,
-			"Disc": 100
+			"Gen": 50,
+			"Disc": 50
 		}
 	},
 	
 	"Debug": {
 		"Intervals": {
-			"PrintLossGen": 100,
-			"PrintLossDisc": 100,
+			"PrintLossGen": 1,
+			"PrintLossDisc": 1,
 			"SaveCKPT": 5
 		}
 	}

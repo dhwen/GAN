@@ -14,6 +14,7 @@ model_ckpt/
 # Misc Folders
 .idea/
 __pycache__/
+MNIST_data/
 
 # Windows Installer files
 *.cab

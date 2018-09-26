@@ -1,12 +1,12 @@
 import tensorflow as tf
 import numpy as np
 import os
-import json
 from GAN import GAN
 from data_loader import DataLoader
 from config_utils import ConfigLoader
 
 file_json = "config_numerical.json"
+#file_json = "config_mnist.json"
 config = ConfigLoader(file_json)
 
 if not os.path.isdir(config.ckpt_save_path):
@@ -42,18 +42,22 @@ with tf.Session(graph=net.graph) as sess:
         data = np.concatenate((true_samples, false_samples), axis=0)
         data_labels = np.concatenate((true_labels, false_labels), axis=0)
 
-        idcs_new = np.random.permutation(len(true_samples)+len(noise_samples))
+        idcs_new = np.random.permutation(len(true_samples)+len(noise_samples)) - 1
 
-        data = data[idcs_new - 1]
-        data_labels = data_labels[idcs_new - 1]
+        data = data[idcs_new]
+        data_labels = data_labels[idcs_new]
 
         for j in range(config.num_epochs_disc):
-            [opt, output, loss] = sess.run([net.opt_disc, net.output_disc, net.loss], feed_dict={net.input_disc: data, net.label: data_labels})
+            idcs_batch_disc = (np.random.permutation(len(true_samples) + len(noise_samples)) - 1)[1:config.batch_size_disc]
+
+            [opt, output, loss] = sess.run([net.opt_disc, net.output_disc, net.loss], feed_dict={net.input_disc: data[idcs_batch_disc], net.label: data_labels[idcs_batch_disc]})
             if (j+1) % config.print_interval_loss_disc == 0 :
                 print('Epoch %d %d, training loss for the discriminative network is %g' % (i+1, j+1, loss))
 
         for j in range(config.num_epochs_gen):
-            [opt, output, loss] = sess.run([net.opt_gen, net.output_disc, net.loss], feed_dict={net.input_gen: noise_samples, net.label: noise_labels})
+            idcs_batch_gen = (np.random.permutation(len(noise_samples)) - 1)[1:config.batch_size_gen]
+
+            [opt, output, loss] = sess.run([net.opt_gen, net.output_disc, net.loss], feed_dict={net.input_gen: noise_samples[idcs_batch_gen], net.label: noise_labels[idcs_batch_gen]})
             if (j+1) % config.print_interval_loss_gen == 0 :
                 print('Epoch %d %d, training loss for the generative network is %g' % (i+1, j+1, loss))
 
