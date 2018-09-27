@@ -8,8 +8,11 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
-# Ckpt Folders
-model_ckpt/
+# Ckpt Folder
+*_ckpt/
+
+# Output Folder
+output*
 
 # Misc Folders
 .idea/

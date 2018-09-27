@@ -5,8 +5,8 @@ from GAN import GAN
 from data_loader import DataLoader
 from config_utils import ConfigLoader
 
-file_json = "config_numerical.json"
-#file_json = "config_mnist.json"
+#file_json = "config_numerical.json"
+file_json = "config_mnist.json"
 config = ConfigLoader(file_json)
 
 if not os.path.isdir(config.ckpt_save_path):
@@ -22,9 +22,9 @@ with tf.Session(graph=net.graph) as sess:
     sess.run(tf.global_variables_initializer())
     saver = tf.train.Saver()
 
-#    if os.path.isfile(ckpt_path + 'GAN.ckpt.meta'):
-#        saver.restore(sess, tf.train.latest_checkpoint(ckpt_path))
-#        print("Restored ckpt")
+    #if os.path.isfile(config.ckpt_save_path+config.ckpt_file_name+".meta"):
+    #    saver.restore(sess, tf.train.latest_checkpoint(config.ckpt_save_path))
+    #    print("Restored ckpt file.")
 
     true_labels = np.zeros((len(true_samples), 2))
     true_labels[:, 0] = 1
@@ -37,7 +37,7 @@ with tf.Session(graph=net.graph) as sess:
 
     for i in range(config.num_epochs_main):
 
-        false_samples = sess.run(net.output_gen, feed_dict={net.input_gen: noise_samples, net.label: noise_labels})
+        false_samples = sess.run(net.output_gen, feed_dict={net.input_gen: noise_samples})
 
         data = np.concatenate((true_samples, false_samples), axis=0)
         data_labels = np.concatenate((true_labels, false_labels), axis=0)
@@ -62,5 +62,5 @@ with tf.Session(graph=net.graph) as sess:
                 print('Epoch %d %d, training loss for the generative network is %g' % (i+1, j+1, loss))
 
         if (i+1) % config.save_interval_ckpt == 0:
-            print(false_samples)
+            print(false_samples[1:5])
             saver.save(sess, config.ckpt_save_path + config.ckpt_file_name)

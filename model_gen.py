@@ -22,9 +22,9 @@ class ModelGen:
         fc2 = DenseStack(fc1, 16, id=2)
         fc3 = DenseStack(fc2, 16, id=3)
         fc4 = DenseStack(fc3, 24, id=4)
-        fc5 = DenseStack(fc4, 24, id=5)
+        fc5 = DenseStack(fc4, 32, id=5)
         fc6 = DenseStack(fc5, output_dims[0]*output_dims[1]*output_dims[2], id=6)
-        self.output = tf.reshape(fc6, [-1, *output_dims])
+        self.output = tf.reshape(fc6, [-1, *output_dims], name="Output")
 
     def build_model_DNN(self, input_dims, output_dims):
         if (len(input_dims) != 1 or len(output_dims) != 1):

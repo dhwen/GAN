@@ -1,11 +1,11 @@
 {
 	"Model": {
 		"Type": "CNN",
-		"PathCKPT": "model_ckpt/",
+		"PathCKPT": "model_mnist_ckpt/",
 		"NameCKPT": "GAN.ckpt"
 	},
 
-	"Training": {
+	"Train": {
 	
 		"Noise": {
 			"Count": 1000,
@@ -21,21 +21,29 @@
 		},
 	
 		"Epochs": {
-			"Main": 40,
-			"Gen": 2000,
-			"Disc": 2000
+			"Main": 100,
+			"Gen": 100,
+			"Disc": 100
 		},
 		
 		"BatchSize": {
-			"Gen": 50,
-			"Disc": 50
+			"Gen": 100,
+			"Disc": 100
 		}
+	},
+	
+	"Test": {
+		"Noise": {
+			"Count": 5
+		},
+		"OutputTensorName": "Generative/Output:0",
+		"OutputFolder": "output_mnist/"
 	},
 	
 	"Debug": {
 		"Intervals": {
-			"PrintLossGen": 1,
-			"PrintLossDisc": 1,
+			"PrintLossGen": 5,
+			"PrintLossDisc": 5,
 			"SaveCKPT": 5
 		}
 	}

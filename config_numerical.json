@@ -1,11 +1,11 @@
 {
 	"Model": {
 		"Type": "DNN",
-		"PathCKPT": "model_ckpt/",
+		"PathCKPT": "model_numerical_ckpt/",
 		"NameCKPT": "GAN.ckpt"
 	},
 
-	"Training": {
+	"Train": {
 	
 		"Noise": {
 			"Count": 1000,
@@ -30,6 +30,14 @@
 			"Gen": 100,
 			"Disc": 100
 		}
+	},
+	
+	"Test": {
+		"Noise": {
+			"Count": 100
+		},
+		"OutputTensorName": "Generative/Output/BiasAdd:0",
+		"OutputFolder": "output_numerical/"
 	},
 	
 	"Debug": {
