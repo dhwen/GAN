@@ -4,8 +4,8 @@ def DenseStack(inputs, nNodes, id):
     with tf.variable_scope("DenseStack" + str(id)):
         fc = tf.layers.dense(inputs, nNodes, name="FC")
         bn = tf.layers.batch_normalization(fc, name="BN")
-        relu = tf.nn.leaky_relu(fc, alpha=0.01, name='LeakyRelu')
-    return relu
+        leaky_relu = tf.nn.leaky_relu(fc, alpha=0.01, name='LeakyRelu')
+    return leaky_relu
 
 
 def ConvStack(inputs, nChannels, conv_filter_dim, pool_filter_dim, id):

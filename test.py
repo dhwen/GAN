@@ -19,13 +19,6 @@ with tf.Session(graph=tf.Graph()) as sess:
     saver = tf.train.import_meta_graph(config.ckpt_save_path+config.ckpt_file_name+".meta")
     saver.restore(sess, tf.train.latest_checkpoint(config.ckpt_save_path))
 
-    ops = sess.graph.get_operations()
-
-    list_ops = [op.values() for op in ops]
-
-    for op in list_ops:
-        print(op)
-
     input = sess.graph.get_tensor_by_name("Generative/Input:0")
     output = sess.graph.get_tensor_by_name(config.output_tensor_name)
 

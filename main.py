@@ -62,5 +62,4 @@ with tf.Session(graph=net.graph) as sess:
                 print('Epoch %d %d, training loss for the generative network is %g' % (i+1, j+1, loss))
 
         if (i+1) % config.save_interval_ckpt == 0:
-            print(false_samples[1:5])
             saver.save(sess, config.ckpt_save_path + config.ckpt_file_name)

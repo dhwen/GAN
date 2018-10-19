@@ -21,9 +21,9 @@
 		},
 	
 		"Epochs": {
-			"Main": 100,
-			"Gen": 100,
-			"Disc": 100
+			"Main": 200,
+			"Gen": 500,
+			"Disc": 500
 		},
 		
 		"BatchSize": {
@@ -34,7 +34,7 @@
 	
 	"Test": {
 		"Noise": {
-			"Count": 5
+			"Count": 10
 		},
 		"OutputTensorName": "Generative/Output:0",
 		"OutputFolder": "output_mnist/"
@@ -42,8 +42,8 @@
 	
 	"Debug": {
 		"Intervals": {
-			"PrintLossGen": 5,
-			"PrintLossDisc": 5,
+			"PrintLossGen": 10,
+			"PrintLossDisc": 10,
 			"SaveCKPT": 5
 		}
 	}
