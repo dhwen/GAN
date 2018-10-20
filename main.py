@@ -5,8 +5,8 @@ from GAN import GAN
 from data_loader import DataLoader
 from config_utils import ConfigLoader
 
-#file_json = "config_numerical.json"
-file_json = "config_mnist.json"
+file_json = "config_numerical.json"
+#file_json = "config_mnist.json"
 config = ConfigLoader(file_json)
 
 if not os.path.isdir(config.ckpt_save_path):
