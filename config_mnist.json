@@ -6,26 +6,22 @@
 	},
 
 	"Train": {
-	
 		"Noise": {
 			"Count": 1000,
 			"Dimensions": [10],
 			"Mean": 0,
 			"STDDEV": 1
 		},
-	
 		"Samples": {
 			"Count": 1000,
 			"Dimensions": [28, 28, 1],
 			"Type": "mnist"
 		},
-	
 		"Epochs": {
 			"Main": 200,
 			"Gen": 500,
 			"Disc": 500
 		},
-		
 		"BatchSize": {
 			"Gen": 100,
 			"Disc": 100

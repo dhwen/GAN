@@ -6,7 +6,6 @@
 	},
 
 	"Train": {
-	
 		"Noise": {
 			"Count": 1000,
 			"Dimensions": [10],
