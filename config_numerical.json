@@ -19,7 +19,7 @@
 			"Type": "numerical"
 		},
 	
-		"Epochs": {
+		"Iterations": {
 			"Main": 40,
 			"Gen": 2000,
 			"Disc": 2000

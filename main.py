@@ -35,7 +35,7 @@ with tf.Session(graph=net.graph) as sess:
 
     data_labels = np.zeros((len(noise_samples)+len(true_samples), 2))
 
-    for i in range(config.num_epochs_main):
+    for i in range(config.num_iter_main):
 
         false_samples = sess.run(net.output_gen, feed_dict={net.input_gen: noise_samples})
 
@@ -47,19 +47,19 @@ with tf.Session(graph=net.graph) as sess:
         data = data[idcs_new]
         data_labels = data_labels[idcs_new]
 
-        for j in range(config.num_epochs_disc):
+        for j in range(config.num_iter_disc):
             idcs_batch_disc = (np.random.permutation(len(true_samples) + len(noise_samples)) - 1)[1:config.batch_size_disc]
 
             [opt, output, loss] = sess.run([net.opt_disc, net.output_disc, net.loss], feed_dict={net.input_disc: data[idcs_batch_disc], net.label: data_labels[idcs_batch_disc]})
             if (j+1) % config.print_interval_loss_disc == 0 :
-                print('Epoch %d %d, training loss for the discriminative network is %g' % (i+1, j+1, loss))
+                print('Iteration %d-%d, training loss for the discriminative network is %g' % (i+1, j+1, loss))
 
-        for j in range(config.num_epochs_gen):
+        for j in range(config.num_iter_gen):
             idcs_batch_gen = (np.random.permutation(len(noise_samples)) - 1)[1:config.batch_size_gen]
 
             [opt, output, loss] = sess.run([net.opt_gen, net.output_disc, net.loss], feed_dict={net.input_gen: noise_samples[idcs_batch_gen], net.label: noise_labels[idcs_batch_gen]})
             if (j+1) % config.print_interval_loss_gen == 0 :
-                print('Epoch %d %d, training loss for the generative network is %g' % (i+1, j+1, loss))
+                print('Iteration %d-%d, training loss for the generative network is %g' % (i+1, j+1, loss))
 
         if (i+1) % config.save_interval_ckpt == 0:
             saver.save(sess, config.ckpt_save_path + config.ckpt_file_name)

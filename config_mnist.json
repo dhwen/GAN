@@ -17,7 +17,7 @@
 			"Dimensions": [28, 28, 1],
 			"Type": "mnist"
 		},
-		"Epochs": {
+		"Iterations": {
 			"Main": 200,
 			"Gen": 500,
 			"Disc": 500
